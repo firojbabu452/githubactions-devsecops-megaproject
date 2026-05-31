@@ -19,6 +19,7 @@ jobs:
       with:
         node-version: '23'
         cache: 'npm'
+        cache-dependency-path: client/package-lock.json
     - name: Frontend Compilation (Syntax Check)
       run: |
        cd client
