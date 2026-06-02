@@ -156,3 +156,30 @@ jobs:
           push: true
           tags: firojbabu452/backend:latest
           file: ./api/Dockerfile
+  trivy_image_scan:
+    runs-on: Agent-1
+    needs: build_frontend_docker_image_and_push  # or whatever job built/pushed y image
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+  
+      - name: Run Trivy image scan for backend
+        uses: aquasecurity/trivy-action@0.28.0
+        with:
+          scan-type: image                       # scan container image
+          image-ref: firojbabu452/backend:latest
+          format: table
+          exit-code: '0'                         # fail if vulns found
+          ignore-unfixed: true
+          vuln-type: os,library
+          severity: CRITICAL,HIGH 
+      - name: Run Trivy image scan for frontend
+        uses: aquasecurity/trivy-action@0.28.0
+        with:
+          scan-type: image
+          image-ref: firojbabu452/frontend:latest
+          format: table
+          exit-code: '0'
+          ignore-unfixed: true
+          vuln-type: os,library
+          severity: CRITICAL,HIGH
