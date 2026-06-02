@@ -174,7 +174,7 @@ jobs:
           vuln-type: os,library
           severity: CRITICAL,HIGH 
       - name: Run Trivy image scan for frontend
-        uses: aquasecurity/trivy-action@0.28.0
+        uses: aquasecurity/trivy-action@master
         with:
           scan-type: image
           image-ref: firojbabu452/frontend:latest
