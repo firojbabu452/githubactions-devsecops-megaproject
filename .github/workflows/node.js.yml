@@ -163,8 +163,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
   
-      - name: Run Trivy image scan for backend
-        uses: aquasecurity/trivy-action@0.28.0
+      - name: Run Trivy Scan
+        uses: aquasecurity/trivy-action@v0.36.0
         with:
           scan-type: image                       # scan container image
           image-ref: firojbabu452/backend:latest
